@@ -3,7 +3,7 @@ import { Home, Assessment, Person, Event, ExitToApp , Store , History } from '@m
 
 import './sideBar.css';
 
-function Sidebar() {
+function SideBar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -54,4 +54,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default SideBar;

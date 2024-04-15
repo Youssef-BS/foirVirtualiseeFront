@@ -1,10 +1,10 @@
 import './App.css';
-import Sidebar from './components/sideBarAdmin/SideBar';
+import Admin from './pages/admin/Admin';
 
 function App() {
   return (
     <div className="App">
-    <Sidebar />
+    <Admin />
     </div>
   );
 }
