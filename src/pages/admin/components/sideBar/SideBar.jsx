@@ -1,5 +1,6 @@
 import React from 'react';
 import { Home, Assessment, Person, Event, ExitToApp , Store , History } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 import './sideBar.css';
 
@@ -12,11 +13,11 @@ function SideBar() {
           <ul className="sidebarList">
             <li className="sidebarListItem active">
               <Home className="sidebarIcon" />
-              <a href="/dashboard">Accueil</a>
+              <Link to="/">Accueil</Link>
             </li>
             <li className="sidebarListItem">
               <Assessment className="sidebarIcon" />
-              <a href="/analystic">Analytique</a>
+              <Link href="/analystic">Analytique</Link>
             </li>
           </ul>
         </div>
@@ -25,28 +26,32 @@ function SideBar() {
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <a href="/users">Les utilisateurs</a>
+              <Link to="/utilisateur">Les utilisateurs</Link>
             </li>
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <a href="/programs">Les réservations</a>
+              <Link href="/programs">Les réservations</Link>
             </li>
             <li className="sidebarListItem">
               <History className="sidebarIcon" />
-              <a href="/products">Les historiques</a>
+              <Link href="/products">Les historiques</Link>
             </li>
             <li className="sidebarListItem">
               <Event className="sidebarIcon" />
-              <a href="/products">Les événements</a>
+              <Link href="/products">Les événements</Link>
+            </li>
+            <li className="sidebarListItem">
+              <Store className="sidebarIcon" />
+              <Link to="/bands">Les bands</Link>
             </li>
           </ul>
           <ul className="sidebarList">
-            <a href="/logout">
+            <Link href="/logout">
               <li className="sidebarListItem">
                 <ExitToApp className="sidebarIcon" />
                 Déconnexion
               </li>
-            </a>
+            </Link>
           </ul>
         </div>
       </div>

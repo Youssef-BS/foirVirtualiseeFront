@@ -1,0 +1,49 @@
+.bands-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .bands-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .band-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .band-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .band-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .band-genre {
+    color: #666;
+  }
+
+  .button-add{
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 7px;
+    border-radius: 12px;
+    margin: 15px;
+    text-align: center;
+  }
+
+  Link {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+  }
+  
