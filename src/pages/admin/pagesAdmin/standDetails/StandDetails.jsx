@@ -48,7 +48,7 @@ function StandDetails() {
 
     return (
         <div className="stand-details-container">
-            <h2>Stand Sélectionné</h2>
+            <h2>Détails de stand</h2>
             {error ? (
                 <div className="error-message">Erreur : {error}</div>
             ) : stand ? (

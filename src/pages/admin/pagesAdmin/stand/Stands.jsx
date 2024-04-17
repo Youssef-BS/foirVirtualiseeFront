@@ -29,14 +29,13 @@ function Bands() {
   };
 
   const handleConsulter = (id) => {
-    
     navigate(`/bandsDetail/${id}`);
   };
 
   return (
     <div className="bands-container">
-      <h2>Stands</h2>
-      <button className='button-add'><Link to="/creation-brand">Ajouter Brand</Link></button>
+      <h2>Les stands</h2>
+      <button className='button-add' ><Link to="/creation-brand" style={{ textDecoration: 'none', color: 'white' }}>Ajouter Brand</Link></button>
       {error ? (
         <div className="error-message">Error: {error}</div>
       ) : (

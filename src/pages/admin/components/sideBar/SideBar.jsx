@@ -38,11 +38,11 @@ function SideBar() {
             </li>
             <li className="sidebarListItem">
               <Event className="sidebarIcon" />
-              <Link href="/products">Les événements</Link>
+              <Link to="/event">Les événements</Link>
             </li>
             <li className="sidebarListItem">
               <Store className="sidebarIcon" />
-              <Link to="/bands">Les bands</Link>
+              <Link to="/bands">Les Stands</Link>
             </li>
           </ul>
           <ul className="sidebarList">
