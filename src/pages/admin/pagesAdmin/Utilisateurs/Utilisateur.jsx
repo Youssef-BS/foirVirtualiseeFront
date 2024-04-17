@@ -1,67 +1,74 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./utilisateur.css";
+import axios from 'axios';
+import { Link , useNavigate } from 'react-router-dom';
 
 function Utilisateur() {
-  const data = [
-    {
-      name: 'John Doe',
-      email: 'john@example.com',
-      role: 'admin',
-      username: 'john_doe',
-    },
-    {
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      role: 'user',
-      username: 'jane_smith',
-    },
-    {
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      role: 'user',
-      username: 'jane_smith',
-    },
-  ];
 
-  const handleConsulter = (username) => {
-    console.log(`Consulting user: ${username}`);
-    // Add logic to handle consultation
+  const navigate = useNavigate();
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/users');
+      setUsers(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleSupprimer = (username) => {
-    console.log(`Deleting user: ${username}`);
-    // Add logic to handle deletion
+  const handleConsulter = (id) => {
+ navigate('/utilisateurDetails/'+id)
+  };
+
+  const handleSupprimer = async (id) => {
+     try {
+      await axios.delete(`http://localhost:3000/users/${id}`);
+      setUsers(users.filter(user => user._id !== id));
+    } 
+     catch(error) {
+      console.error(error);
+    }
+     
   };
 
   return (
     <>
-    <h1>Les utilisateurs</h1>
-    <div className="utilisateur-container">
-      {data.map((user, index) => (
-        <div key={index} className="utilisateur-card">
-          <div className="utilisateur-field">
-            <span className="field-name">Name: </span>
-            <span className="field-value">{user.name}</span>
+    <div className="bands-container">
+      <h1>Les utilisateurs</h1>
+      <button className='button-add'><Link to="/ajouterUtilisateur" style={{ textDecoration: 'none', color: 'white' }}>Ajouter Utilisateur</Link></button>
+      <div className="utilisateur-container">
+        {users.map((user, index) => (
+          <div key={index} className="utilisateur-card">
+            <div className="utilisateur-field">
+              <span className="field-name">Name: </span>
+              <span className="field-value">{user.name}</span>
+            </div>
+            <div className="utilisateur-field">
+              <span className="field-name">Email: </span>
+              <span className="field-value">{user.email}</span>
+            </div>
+            <div className="utilisateur-field">
+              <span className="field-name">Role: </span>
+              <span className="field-value">{user.role}</span>
+            </div>
+            <div className="utilisateur-field">
+              <span className="field-name">Username: </span>
+              <span className="field-value">{user.username}</span>
+            </div>
+            <div className="button-container">
+              <button onClick={() => handleConsulter(user._id)}>Consulter</button>
+              <button onClick={() => handleSupprimer(user._id)}>Supprimer</button>
+            </div>
           </div>
-          <div className="utilisateur-field">
-            <span className="field-name">Email: </span>
-            <span className="field-value">{user.email}</span>
-          </div>
-          <div className="utilisateur-field">
-            <span className="field-name">Role: </span>
-            <span className="field-value">{user.role}</span>
-          </div>
-          <div className="utilisateur-field">
-            <span className="field-name">Username: </span>
-            <span className="field-value">{user.username}</span>
-          </div>
-          <div className="button-container">
-            <button onClick={() => handleConsulter(user.username)}>Consulter</button>
-            <button onClick={() => handleSupprimer(user.username)}>Supprimer</button>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+      </div>
     </>
   );
 }

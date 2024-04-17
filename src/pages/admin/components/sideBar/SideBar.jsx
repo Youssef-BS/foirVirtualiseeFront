@@ -15,7 +15,7 @@ function SideBar() {
 
   const handleLogout = async (event)=>{
     event.preventDefault();
-    // window.location.reload(false);
+    window.location.reload(false);
     await logout();
 
    }
@@ -41,23 +41,23 @@ function SideBar() {
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <Link to="/admin/utilisateur">Les utilisateurs</Link>
+              <Link to="/utilisateur">Les utilisateurs</Link>
             </li>
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <Link href="/admin/programs">Les réservations</Link>
+              <Link href="/programs">Les réservations</Link>
             </li>
             <li className="sidebarListItem">
               <History className="sidebarIcon" />
-              <Link href="/admin/products">Les historiques</Link>
+              <Link href="/products">Les historiques</Link>
             </li>
             <li className="sidebarListItem">
               <Event className="sidebarIcon" />
-              <Link to="/admin/event">Les événements</Link>
+              <Link to="/event">Les événements</Link>
             </li>
             <li className="sidebarListItem">
               <Store className="sidebarIcon" />
-              <Link to="/admin/bands">Les Stands</Link>
+              <Link to="/bands">Les Stands</Link>
             </li>
           </ul>
           <ul className="sidebarList">

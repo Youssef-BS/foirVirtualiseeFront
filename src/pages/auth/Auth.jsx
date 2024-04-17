@@ -2,9 +2,12 @@ import { useState, useContext } from 'react';
 import "./auth.css";
 import axios from "axios";
 import { AuthContext } from '../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
 
+
+  const navigate = useNavigate();
   const [username, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -42,11 +45,15 @@ const Auth = () => {
     setRegister(!register);
   }
 
-  const handleLogin = async (event)=>{
+  const handleLogin = async (event) => {
     event.preventDefault();
-    await login(email,password);
-   }
+    await login(email, password);
+    if (currentUser && currentUser.role === 'admin') {
+      navigate("/admin", { replace: true }); 
+    }
+  };
 
+  
   return (
     <>
       <div className='flex flex-row h-96 w-3/5 text-center mt-40 m-auto justify-center items-center shadow-lg shadow-black-500/40'>

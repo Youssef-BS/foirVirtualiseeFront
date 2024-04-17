@@ -9,6 +9,8 @@ import Event from './pagesAdmin/evenement/Event';
 import EventDetails from './pagesAdmin/evenementDetails/EventDetails';
 import AjouterEvent from './pagesAdmin/ajouterEvent/AjouterEvent';
 import Layout from './components/layout/Layout';
+import AjouterUtilisateur from './pagesAdmin/ajouterUtilisateur/AjouterUtilisateur';
+import UtilisateurDetails from './pagesAdmin/utilisateurDetails/UtilisateurDetails';
 
 
 function Admin() {
@@ -23,6 +25,8 @@ function Admin() {
       <Route path="/event" element={<Layout><Event /></Layout>} />
       <Route path="/eventDetails/:id" element={<Layout><EventDetails /></Layout>} />
       <Route path="/ajouterEvent" element={<Layout><AjouterEvent /></Layout>} />
+      <Route path="/ajouterUtilisateur" element={<Layout><AjouterUtilisateur /></Layout>} />
+      <Route path="/utilisateurDetails/:id" element={<Layout><UtilisateurDetails /></Layout>} />
     </Routes>
   );
 }

@@ -24,7 +24,7 @@ function EventList() {
     console.log(events);
 
     const handleConsulter = (id) => {
-        navigate(`/admin/eventDetails/${id}`);
+        navigate(`/eventDetails/${id}`);
     };
 
     const handleSupprimer = async (id) => {
@@ -41,7 +41,7 @@ function EventList() {
         
         <div className="event-list-container"> 
   <h2>Liste des evenements </h2>
-  <button className='button-add'><Link to="/admin/ajouterEvent" style={{ textDecoration: 'none', color: 'white' }}>Ajouter Evenement</Link></button>
+  <button className='button-add'><Link to="/ajouterEvent" style={{ textDecoration: 'none', color: 'white' }}>Ajouter Evenement</Link></button>
 
   {error ? (
     <div className="error-message">Error: {error}</div>
