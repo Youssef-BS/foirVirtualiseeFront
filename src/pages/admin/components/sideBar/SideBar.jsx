@@ -1,10 +1,25 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import { Home, Assessment, Person, Event, ExitToApp , Store , History } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 import './sideBar.css';
+import { AuthContext } from '../../../../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
+
+ 
+
+
+  const {logout} = useContext(AuthContext) ;
+
+  const handleLogout = async (event)=>{
+    event.preventDefault();
+    // window.location.reload(false);
+    await logout();
+
+   }
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -26,28 +41,28 @@ function SideBar() {
           <ul className="sidebarList">
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <Link to="/utilisateur">Les utilisateurs</Link>
+              <Link to="/admin/utilisateur">Les utilisateurs</Link>
             </li>
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <Link href="/programs">Les réservations</Link>
+              <Link href="/admin/programs">Les réservations</Link>
             </li>
             <li className="sidebarListItem">
               <History className="sidebarIcon" />
-              <Link href="/products">Les historiques</Link>
+              <Link href="/admin/products">Les historiques</Link>
             </li>
             <li className="sidebarListItem">
               <Event className="sidebarIcon" />
-              <Link to="/event">Les événements</Link>
+              <Link to="/admin/event">Les événements</Link>
             </li>
             <li className="sidebarListItem">
               <Store className="sidebarIcon" />
-              <Link to="/bands">Les Stands</Link>
+              <Link to="/admin/bands">Les Stands</Link>
             </li>
           </ul>
           <ul className="sidebarList">
             <Link href="/logout">
-              <li className="sidebarListItem">
+              <li className="sidebarListItem" onClick={handleLogout}>
                 <ExitToApp className="sidebarIcon" />
                 Déconnexion
               </li>
