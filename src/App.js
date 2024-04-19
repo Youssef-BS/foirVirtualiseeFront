@@ -11,16 +11,12 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        {/* Render different components based on the user's role */}
         {currentUser ? (
           <>
-            {/* Render the Admin component if the user is an admin */}
             {currentUser.role === 'admin' && <Route path="/*" element={<Admin />} />}
-            {/* Render the Client component if the user is a client */}
             {currentUser.role === 'user' && <Route path="/*" element={<Client />} />}
           </>
         ) : (
-          // Render the Auth component if no user is logged in
           <Route path="/" element={<Auth />} />
         )}
       </Routes>

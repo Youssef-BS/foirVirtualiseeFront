@@ -10,19 +10,20 @@
 .event-list {
   list-style: none;
   padding: 0;
-  display: flex; /* Make it a flex container */
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  display: flex; 
+  flex-wrap: wrap; 
 }
 
 .event-list li {
-  width: calc(50% - 100px); /* Make each item take 50% width with a margin of 20px */
+  width: calc(50% - 100px); 
   margin: auto ;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  display: flex; /* Make it a flex container */
-  flex-direction: column; /* Stack items vertically */
+  display: flex;
+  flex-direction: column; 
+  margin: 5px auto;
 }
 
 .event-list h3 {
@@ -38,7 +39,7 @@
 }
 
 .button-container {
-  margin-top: auto; /* Push the button container to the bottom */
+  margin-top: auto; 
   display: flex;
   justify-content: space-between;
 }

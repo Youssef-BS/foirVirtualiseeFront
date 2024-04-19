@@ -7,15 +7,13 @@ import { AuthContext } from '../../../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
-
- 
-
-
   const {logout} = useContext(AuthContext) ;
+  const navigate = useNavigate();
 
   const handleLogout = async (event)=>{
     event.preventDefault();
     window.location.reload(false);
+    navigate('/')
     await logout();
 
    }

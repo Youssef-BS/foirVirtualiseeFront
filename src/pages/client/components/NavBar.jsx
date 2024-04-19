@@ -1,0 +1,21 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function NavBar() {
+  return (
+    <nav className="bg-gray-800 py-4">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        <div>
+          <Link to="/" className="text-white text-xl font-bold">MonSiteWeb</Link>
+        </div>
+        <div className="space-x-4">
+          <Link to="/events" className="text-white hover:text-gray-300">Événements</Link>
+          <Link to="/profile" className="text-white hover:text-gray-300">Profil</Link>
+          <Link to="/reservation" className="text-white hover:text-gray-300">Suivi des Réservations</Link>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default NavBar;

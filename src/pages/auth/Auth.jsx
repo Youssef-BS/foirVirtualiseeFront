@@ -19,27 +19,9 @@ const Auth = () => {
 
   const { currentUser } = useContext(AuthContext);
 
-  const Url = "http://localhost:3000/auth/";
-
-  
   const registerUser = async () => {
-    // try {
-    //   await axios.post(Url + "/register", {
-    //     username: username,
-    //     nom : nom,
-    //     email: email,
-    //     password: password
-    //   })
-    //   setSuccess("Inscription réussie");
-    //   setEmail('');
-    //   setPassword('');
-    //   setUserName('');
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
-  }
-// 
 
+  }
 
   const registerMod = () => {
     setRegister(!register);
@@ -51,9 +33,11 @@ const Auth = () => {
     if (currentUser && currentUser.role === 'admin') {
       navigate("/admin", { replace: true }); 
     }
+    if (currentUser && currentUser.role === 'user') {
+      navigate("/client", { replace: true }); 
+    }
   };
 
-  
   return (
     <>
       <div className='flex flex-row h-96 w-3/5 text-center mt-40 m-auto justify-center items-center shadow-lg shadow-black-500/40'>

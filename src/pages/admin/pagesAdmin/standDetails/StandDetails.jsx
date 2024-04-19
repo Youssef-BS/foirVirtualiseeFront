@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 import "./standDetails.css";
 
 function StandDetails() {
     const { id } = useParams();
     const [stand, setStand] = useState(null);
     const [error, setError] = useState(null);
-
-    // State variables for input values
+    const navigate = useNavigate();
     const [Numero, setNumero] = useState('');
     const [prix, setPrix] = useState('');
     const [superficie, setSuperficie] = useState('');
     const [disponibilite, setDisponibilite] = useState(false);
 
     useEffect(() => {
+
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/stand/getid/${id}`);
@@ -29,7 +29,9 @@ function StandDetails() {
                 console.error("Error fetching stand details:", error);
             }
         };
+
         fetchData();
+
     }, [id]);
 
     const handleUpdate = async () => {
@@ -41,6 +43,7 @@ function StandDetails() {
                 disponibilite
             });
             console.log("Stand updated successfully");
+            navigate('/bands');
         } catch (error) {
             console.error("Error updating stand:", error);
         }
