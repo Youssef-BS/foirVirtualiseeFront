@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Event() {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,10 +13,10 @@ function Event() {
       try {
         const response = await axios.get('http://localhost:3000/event/all');
         setEvents(response.data);
-        setLoading(false); // Update loading state after data is fetched
+        setLoading(false);
       } catch (error) {
         setError(error.message);
-        setLoading(false); // Update loading state in case of error
+        setLoading(false);
         console.error(error);
       }
     };
@@ -30,37 +30,37 @@ function Event() {
   const isEventAvailable = (event) => {
     const currentDate = new Date();
     const endDate = new Date(event.DateFin);
-    return currentDate > endDate; // Check if current date is greater than end date
+    return currentDate > endDate;
   };
 
   return (
-    <div className="event-list-container">
-      <h2>Liste des evenements</h2>
-      {loading ? ( // Show loading message while data is being fetched
-        <div className="loading-message">Chargement...</div>
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-bold mb-4">Liste des événements</h2>
+      {loading ? (
+        <div className="text-center">Chargement...</div>
       ) : error ? (
-        <div className="error-message">Error: {error}</div>
+        <div className="text-red-500">Erreur: {error}</div>
       ) : events.length > 0 ? (
-        <ul className="event-list">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {events.map(event => (
-            <li key={event._id} className="event-item">
-              <div>
-                <h3>{event.EventName}</h3>
-                <p>{event.description}</p>
-                <p>Start Date: {new Date(event.DateDebut).toLocaleDateString()}</p>
-                <p>End Date: {new Date(event.DateFin).toLocaleDateString()}</p>
-                <p className={isEventAvailable(event) ? 'availability-green' : 'availability-red'}>
-                  {isEventAvailable(event) ? 'Disponible' : 'Non disponible'}
-                </p>
-              </div>
-              <div className="button-container">
-                <button onClick={() => handleConsulter(event._id)}>Consulter</button>
+            <li key={event._id} className="bg-white shadow-md rounded p-4">
+              <h3 className="text-xl font-bold mb-2">{event.EventName}</h3>
+              <p className="text-gray-700 mb-2">{event.description}</p>
+              <p className="text-gray-700">Date de début: {new Date(event.DateDebut).toLocaleDateString()}</p>
+              <p className="text-gray-700">Date de fin: {new Date(event.DateFin).toLocaleDateString()}</p>
+              <p className={`text-sm font-semibold ${isEventAvailable(event) ? 'text-green-500' : 'text-red-500'}`}>
+                {isEventAvailable(event) ? 'Disponible' : 'Non disponible'}
+              </p>
+              <div className="mt-4">
+                <button onClick={() => handleConsulter(event._id)} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+                  Consulter
+                </button>
               </div>
             </li>
           ))}
         </ul>
       ) : (
-        <div className="empty-message">Aucun événement trouvé</div>
+        <div>Aucun événement trouvé</div>
       )}
     </div>
   );

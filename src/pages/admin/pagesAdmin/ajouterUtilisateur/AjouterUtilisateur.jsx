@@ -3,11 +3,11 @@ import axios from 'axios';
 import "./ajouterUtilisateur.css"
 
 function AjouterUtilisateur() {
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState(''); // Add state for password
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,12 +16,15 @@ function AjouterUtilisateur() {
         name,
         email,
         role,
-        username
+        username,
+        password // Include password in the POST request
       });
+      // Clear input fields after submission
       setName('');
       setEmail('');
       setRole('');
       setUsername('');
+      setPassword('');
     } catch (error) {
       console.error('Error adding user:', error);
     }
@@ -46,6 +49,10 @@ function AjouterUtilisateur() {
         <div className="form-group">
           <label>Username:</label>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <button type="submit">Ajouter Utilisateur</button>
       </form>

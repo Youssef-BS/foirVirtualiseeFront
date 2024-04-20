@@ -13,7 +13,7 @@ function Client() {
       <Route path="/" element={<Layout><Home /></Layout>} />
       <Route path="/events" element={<Layout><Event /></Layout>}></Route>
       <Route path="/event-selectione/:id" element={<Layout><EventSelectioner /></Layout>}></Route>
-      <Route path="/profile/:id" element={<Layout><Profile /></Layout>}></Route>
+      <Route path="/profile" element={<Layout><Profile /></Layout>}></Route>
     </Routes>
     </>
   )
