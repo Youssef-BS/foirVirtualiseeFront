@@ -30,12 +30,12 @@ const Auth = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     await login(email, password);
-    if (currentUser && currentUser.role === 'admin') {
-      navigate("/admin", { replace: true }); 
-    }
-    if (currentUser && currentUser.role === 'user') {
-      navigate("/client", { replace: true }); 
-    }
+    // if (currentUser && currentUser.role === 'admin') {
+    //   navigate("/admin", { replace: true }); 
+    // }
+    // if (currentUser && currentUser.role === 'user') {
+    //   navigate("/client", { replace: true }); 
+    // }
   };
 
   return (
