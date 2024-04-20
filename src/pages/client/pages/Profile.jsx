@@ -6,6 +6,7 @@ import { AuthContext } from '../../../context/authContext';
 function Profile() {
   const [user, setUser] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
+  const [userReservations, setUserReservations] = useState([]);
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,8 +19,21 @@ function Profile() {
         console.log(error);
       }
     };
+
+    const getUserReservations = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/reservation/user/${currentUser._id}`);
+        setUserReservations(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getUser();
+    getUserReservations();
   }, [currentUser._id]);
+
+  console.log(userReservations)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -93,6 +107,21 @@ function Profile() {
         >
           Update Profile
         </button>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Reservations</h2>
+        {userReservations.length > 0 ? (
+          <ul>
+            {userReservations.map((reservation) => (
+              <li key={reservation._id}>
+                Event Name: {reservation.eventName}, Date: {reservation.date}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No reservations found.</p>
+        )}
       </div>
     </div>
   );

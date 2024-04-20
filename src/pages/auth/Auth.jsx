@@ -17,10 +17,13 @@ const Auth = () => {
 
   const { login } = useContext(AuthContext);
 
-  const { currentUser } = useContext(AuthContext);
-
   const registerUser = async () => {
-
+    await axios.post("http://localhost:3000/auth/register" , {
+      username: username,
+      name : nom,
+      email : email,
+      password : password
+    })
   }
 
   const registerMod = () => {
@@ -30,12 +33,6 @@ const Auth = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     await login(email, password);
-    // if (currentUser && currentUser.role === 'admin') {
-    //   navigate("/admin", { replace: true }); 
-    // }
-    // if (currentUser && currentUser.role === 'user') {
-    //   navigate("/client", { replace: true }); 
-    // }
   };
 
   return (
