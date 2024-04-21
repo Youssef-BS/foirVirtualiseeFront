@@ -43,7 +43,7 @@ function SideBar() {
             </li>
             <li className="sidebarListItem">
               <Person className="sidebarIcon" />
-              <Link href="/programs">Les réservations</Link>
+              <Link to="/reservation">Les réservations</Link>
             </li>
             <li className="sidebarListItem">
               <History className="sidebarIcon" />
@@ -62,7 +62,7 @@ function SideBar() {
             <Link href="/logout">
               <li className="sidebarListItem" onClick={handleLogout}>
                 <ExitToApp className="sidebarIcon" />
-                Déconnexion
+               <Link to = "/">Déconnexion</Link> 
               </li>
             </Link>
           </ul>
