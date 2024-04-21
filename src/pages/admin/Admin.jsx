@@ -11,6 +11,7 @@ import AjouterEvent from './pagesAdmin/ajouterEvent/AjouterEvent';
 import Layout from './components/layout/Layout';
 import AjouterUtilisateur from './pagesAdmin/ajouterUtilisateur/AjouterUtilisateur';
 import UtilisateurDetails from './pagesAdmin/utilisateurDetails/UtilisateurDetails';
+import Reservation from './pagesAdmin/resevations/Reservation';
 
 
 function Admin() {
@@ -27,6 +28,7 @@ function Admin() {
       <Route path="/ajouterEvent" element={<Layout><AjouterEvent /></Layout>} />
       <Route path="/ajouterUtilisateur" element={<Layout><AjouterUtilisateur /></Layout>} />
       <Route path="/utilisateurDetails/:id" element={<Layout><UtilisateurDetails /></Layout>} />
+      <Route path="/reservation" element={<Layout><Reservation /></Layout>} />
     </Routes>
   );
 }

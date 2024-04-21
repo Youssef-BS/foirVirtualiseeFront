@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../../context/authContext';
 
 function Profile() {
@@ -10,30 +9,18 @@ function Profile() {
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    const getUser = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/users/${currentUser._id}`);
-        setUser(response.data);
-        setUpdatedUser(response.data);
+        const userResponse = await axios.get(`http://localhost:3000/users/${currentUser._id}`);
+        setUser(userResponse.data);
+        setUpdatedUser(userResponse.data);
       } catch (error) {
         console.log(error);
       }
     };
 
-    const getUserReservations = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/reservation/user/${currentUser._id}`);
-        setUserReservations(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUser();
-    getUserReservations();
+    fetchData();
   }, [currentUser._id]);
-
-  console.log(userReservations)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +39,18 @@ function Profile() {
       alert('Failed to update profile');
     }
   };
+
+  useEffect(() => {
+    const getUserReservations = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/reservation/user/${currentUser._id}/withEvents`);
+        setUserReservations(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserReservations();
+  }, [currentUser._id]);
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
@@ -112,13 +111,29 @@ function Profile() {
       <div className="mt-8">
         <h2 className="text-2xl font-bold mb-4">Reservations</h2>
         {userReservations.length > 0 ? (
-          <ul>
-            {userReservations.map((reservation) => (
-              <li key={reservation._id}>
-                Event Name: {reservation.eventName}, Date: {reservation.date}
-              </li>
-            ))}
-          </ul>
+        <ul className="divide-y divide-gray-200">
+        {userReservations.map((reservation) => (
+          <li key={reservation._id} className="py-4">
+            <div className="flex space-x-4">
+              <div className="flex-1">
+                <p className="text-lg font-semibold text-gray-900">{reservation.event.EventName}</p>
+                <p className="text-sm text-gray-500">Date: {new Date(reservation.event.DateDebut).toLocaleDateString()}</p>
+              </div>
+              <div>
+                {reservation.acceptation ? (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    Accepté
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                    En attente
+                  </span>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
         ) : (
           <p>No reservations found.</p>
         )}
