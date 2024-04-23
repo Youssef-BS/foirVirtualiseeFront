@@ -56,6 +56,7 @@ function EventList() {
                 <p>{event.description}</p>
                 <p>Start Date: {new Date(event.DateDebut).toLocaleDateString()}</p>
                 <p>End Date: {new Date(event.DateFin).toLocaleDateString()}</p>
+                <img src={`http://localhost:3000/${event.photo}`} alt="Event" className='max-h-60 w-full'/> 
               </div>
               <div className="button-container">
                 <button onClick={() => handleConsulter(event._id)}>Consulter</button>

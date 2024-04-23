@@ -8,6 +8,7 @@ function Event() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,6 +23,7 @@ function Event() {
     };
     fetchData();
   }, []);
+
 
   const handleConsulter = (id) => {
     navigate(`/event-selectione/${id}`);
@@ -44,6 +46,7 @@ function Event() {
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {events.map(event => (
             <li key={event._id} className="bg-white shadow-md rounded p-4">
+              <img src={`http://localhost:3000/${event.photo}`} alt='' className='max-h-60 w-full'/>
               <h3 className="text-xl font-bold mb-2">{event.EventName}</h3>
               <p className="text-gray-700 mb-2">{event.description}</p>
               <p className="text-gray-700">Date de début: {new Date(event.DateDebut).toLocaleDateString()}</p>

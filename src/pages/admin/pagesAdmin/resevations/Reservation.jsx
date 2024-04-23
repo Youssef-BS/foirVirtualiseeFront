@@ -17,6 +17,8 @@ function Reservation() {
     fetchReservations();
   }, []);
 
+  console.log(reservations)
+
   const handleAcceptReservation = async (reservationId , userId , eventId) => {
     try {
       await axios.put(`http://localhost:3000/reservation/update/${userId}/${eventId}`, { acceptation: true });
@@ -39,8 +41,9 @@ function Reservation() {
       {reservations.map(reservation => (
         <div key={reservation._id} className="border border-gray-200 p-4 rounded mb-4">
           <h3 className="text-lg font-semibold mb-2">User: {reservation.user.name}</h3>
-          <p className="mb-2">Event Name: {reservation.event.EventName}</p>
-          <p className="mb-2">Date: {new Date(reservation.event.DateDebut).toLocaleDateString()}</p>
+          <img src={`http://localhost:3000/${reservation.event?.photo}`} alt=''/>
+          <p className="mb-2">Event Name: {reservation.event?.EventName}</p>
+          <p className="mb-2">Date: {new Date(reservation.event?.DateDebut).toLocaleDateString()}</p>
           {!reservation.acceptation && (
             <button 
               onClick={() => handleAcceptReservation(reservation._id , reservation.user._id , reservation.event._id)} 
