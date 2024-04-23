@@ -8,20 +8,26 @@ function AjouterEvent() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [description, setDescription] = useState('');
+  const [image, setImage] = useState(null); 
   const [error, setError] = useState(null);
   const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/event/create', {
-        EventName: eventName,
-        DateDebut: startDate,
-        DateFin: endDate,
-        description: description
+      const formData = new FormData();
+      formData.append('EventName', eventName);
+      formData.append('DateDebut', startDate);
+      formData.append('DateFin', endDate);
+      formData.append('description', description);
+      formData.append('photo', image); 
+
+      const response = await axios.post('http://localhost:3000/event/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
       console.log('Event added successfully:', response.data);
-      // Redirect to event page after successful submission
       history('/event');
     } catch (error) {
       setError(error.message);
@@ -66,6 +72,15 @@ function AjouterEvent() {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Image:</label>
+          <input
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])} 
+            accept="image/*" 
             required
           />
         </div>

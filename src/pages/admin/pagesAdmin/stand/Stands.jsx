@@ -44,9 +44,9 @@ function Bands() {
             <div key={index} className="band-card">
               <div className="band-info">
                 <span className="band-numero">Numero: {band.Numero}</span>
-                <span className="band-name">Prix: {band.prix}</span>
+                <span className="band-name">Prix: {band.prix} $</span>
                 <span className="band-genre">Superficie: {band.superficie}</span>
-                <span className="band-disponibilite">Disponibilité: {band.disponibilite}</span>
+                <span className="band-disponibilite">Disponibilité: {band.disponibilite ? "true" : "false"}</span>
                 <div className="button-container">
                   <button onClick={() => handleSupprimer(band._id)}>Supprimer</button>
                   <button onClick={() => handleConsulter(band._id)}>Consulter</button>

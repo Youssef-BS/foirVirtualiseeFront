@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate} from 'react-router-dom';
 import "./utilisateurDetails.css";
 
 
@@ -8,6 +8,7 @@ function UtilisateurDetails() {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [updatedUser, setUpdatedUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -33,6 +34,7 @@ function UtilisateurDetails() {
     try {
       await axios.put(`http://localhost:3000/users/${user._id}`, updatedUser);
       alert('User details updated successfully!');
+      navigate('/utilisateur');
     } catch (error) {
       console.error(error);
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams  , useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import './event.css'; 
 
@@ -7,6 +7,7 @@ function EventDetails() {
   const [event, setEvent] = useState(null);
   const [updatedEvent, setUpdatedEvent] = useState(null); 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -30,6 +31,7 @@ function EventDetails() {
     try {
       await axios.put(`http://localhost:3000/event/update/${id}`, updatedEvent);
       console.log(updatedEvent);
+      navigate('/event')
     } catch (error) {
       
     }
@@ -41,6 +43,7 @@ function EventDetails() {
 
       {event ? (
         <div className="event-details">
+          <img src={`http://localhost:3000/${updatedEvent.photo}`} className='h-60 w-full' alt='' />
           <div className="detail-row">
             <label>Nom d'evenement:</label>
             <input
