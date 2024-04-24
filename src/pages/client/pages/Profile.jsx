@@ -116,8 +116,8 @@ function Profile() {
           <li key={reservation._id} className="py-4">
             <div className="flex space-x-4">
               <div className="flex-1">
-                <p className="text-lg font-semibold text-gray-900">{reservation.event.EventName}</p>
-                <p className="text-sm text-gray-500">Date: {new Date(reservation.event.DateDebut).toLocaleDateString()}</p>
+                <p className="text-lg font-semibold text-gray-900">{reservation.event?.EventName}</p>
+                <p className="text-sm text-gray-500">Date: {new Date(reservation.event?.DateDebut).toLocaleDateString()}</p>
               </div>
               <div>
                 {reservation.acceptation ? (

@@ -1,7 +1,22 @@
-import React from 'react';
+import React , {useState , useEffect} from 'react';
 import "./widGet.css"; 
+import axios from 'axios' ; 
 
 const WidgetLg = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/event/all");
+        setEvents(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+  
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Événements à venir</h3>
@@ -10,27 +25,28 @@ const WidgetLg = () => {
           <tr className="widgetLgTr">
             <th className="widgetLgTh">Événement</th> 
             <th className="widgetLgTh">Date</th>
-            <th className="widgetLgTh">Prix</th>
-            <th className="widgetLgTh">Statut</th> 
+            <th className="widgetLgTh">Description</th> 
           </tr>
         </thead>
         <tbody>
-          <tr className="widgetLgTr">
-            <td className="widgetLgUser">
-              <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                alt=""
-                className="widgetLgImg"
-              />
-              <span className="widgetLgName">Susan Carol</span>
-            </td>
-            <td className="widgetLgDate">2 Juin 2021</td> 
-            <td className="widgetLgAmount">$122.00</td>
-            <td className="widgetLgAmount">test</td>
-            <td className="widgetLgStatus">
-              
-            </td>
-          </tr>
+          {events.map(event => (
+    <tr className="widgetLgTr">
+    <td className="widgetLgUser">
+      <img
+       src={`http://localhost:3000/${event.photo}`} 
+        alt=""
+        className="widgetLgImg"
+      />
+      <span className="widgetLgName">{event.EventName}</span>
+    </td>
+    <td className="widgetLgDate">{event.DateDebut}</td> 
+    <td className="widgetLgAmount">{event.description}</td>
+    <td className="widgetLgStatus">
+      
+    </td>
+  </tr>
+          ))}
+      
        
         </tbody>
       </table>

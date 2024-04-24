@@ -51,11 +51,11 @@ function Home() {
           <>
             {events.map(event => (
             <>
-              <Link to={'/event-selectione/'+event._id}>
+              <Link to={'/event-selectione/'+event?._id}>
               <div key={event._id} className="bg-white shadow-md rounded p-4 flex flex-col">
-                <img src={`http://localhost:3000/${event.photo}`} alt={event.EventName} className="w-full h-40 object-cover rounded mb-2" />
-                <h3 className="text-xl font-bold mb-2">{event.EventName}</h3>
-                <p className="text-gray-700 mb-2">{event.description}</p>
+                <img src={`http://localhost:3000/${event?.photo}`} alt={event?.EventName} className="w-full h-40 object-cover rounded mb-2" />
+                <h3 className="text-xl font-bold mb-2">{event?.EventName}</h3>
+                <p className="text-gray-700 mb-2">{event?.description}</p>
                 <p className="text-gray-700">Date de début: {new Date(event.DateDebut).toLocaleDateString()}</p>
                 <p className="text-gray-700">Date de fin: {new Date(event.DateFin).toLocaleDateString()}</p>
               </div>
